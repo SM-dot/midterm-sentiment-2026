@@ -1,0 +1,13 @@
+{
+  "p_start": 0.205,
+  "p_end": 0.635,
+  "dlogit_total": 1.9090597808261238,
+  "LS_gamma_se": 0.03556822290267848,
+  "MDE_gamma_80pct_power": 0.09959102412749973,
+  "MDE_cum_AR_over_window": 0.19012521869309384,
+  "sign_agree": 13,
+  "binom_p": 0.13158798217773438,
+  "n_sig_5pct": 1,
+  "n_weeks": 64,
+  "weekly_corr_se": 0.125
+}

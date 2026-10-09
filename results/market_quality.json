@@ -1,0 +1,7 @@
+{
+  "corr_daily_dlogit_poly_kalshi": 0.38799007973966143,
+  "corr_weekly_dlogit_poly_kalshi": 0.6426934799545446,
+  "corr_level_poly_kalshi": 0.9788549964137372,
+  "mean_abs_gap_pp": 2.3742214532871975,
+  "implied_from_marginals_corr": 0.9852375184258584
+}

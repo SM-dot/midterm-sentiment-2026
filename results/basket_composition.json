@@ -1,0 +1,42 @@
+{
+  "thesis_long": [
+    "FSLR",
+    "ENPH",
+    "RUN",
+    "NEE",
+    "PLUG",
+    "CNC",
+    "MOH",
+    "OSCR",
+    "HCA",
+    "THC"
+  ],
+  "thesis_short": [
+    "GEO",
+    "CXW",
+    "DJT",
+    "COIN",
+    "HOOD",
+    "RGR",
+    "SWBI",
+    "XOM",
+    "BTU",
+    "LMT"
+  ],
+  "data_long": [
+    "MOH",
+    "FSLR",
+    "OSCR",
+    "ENPH",
+    "CNC"
+  ],
+  "data_short": [
+    "SWBI",
+    "CXW",
+    "NEE",
+    "RGR",
+    "HOOD"
+  ],
+  "sign_agreement_is": 0.65,
+  "sign_agreement_full": 0.65
+}

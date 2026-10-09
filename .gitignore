@@ -1,0 +1,13 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.DS_Store
+# raw third-party text and large derived arrays are not redistributed; `python run_all.py` rebuilds them
+data/raw/
+data/processed/corpus.parquet
+data/processed/embeddings.npz
+data/processed/doc_topics.parquet
+data/processed/doc_issue.parquet
+data/processed/sentiment.parquet
+data/processed/topic_centroids.npy

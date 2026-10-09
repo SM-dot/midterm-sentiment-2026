@@ -1,0 +1,13 @@
+{
+  "kappa_on_substantive_topics": 0.5850974638440578,
+  "agreement_on_substantive_docs": 0.7593779996160491,
+  "n_topics": 260,
+  "outlier_share_raw": 0.36003194219393253,
+  "outlier_share_after_reassign": 0.04971197754742873,
+  "kappa_llm_vs_anchor_topics": 0.24017114717042057,
+  "agreement_llm_vs_anchor_docs": 0.3730752922648252,
+  "spearman_salience_vs_kalshi": 0.8524367141602663,
+  "spearman_recent60_vs_kalshi": 0.8524367141602663,
+  "kalshi_top_issue": "Economy and cost of living",
+  "corr_news_vs_social_share": 0.8823529411764707
+}
