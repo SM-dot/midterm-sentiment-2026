@@ -126,6 +126,43 @@ To check this step without a human in the loop, a fully automatic **embedding-an
 
 ---
 
+### 3.4 Key themes
+
+The eight issues below account for 89% of issue-related discussion and are the ones carried into the sentiment analysis. For each, the table gives its share of discussion, when it peaked, what drove the peak (taken from the headlines in the peak week), how negative the coverage is, and how its sentiment relates to the Democratic-sweep odds.
+
+| Theme | Share | Peak week (share that week) | What drove it | Positive documents | Link to sweep odds (daily Δ corr) |
+|---|---|---|---|---|---|
+| Democracy & rule of law | 33% | Jul 2026 (53%) | Federal moves on election administration, mail voting rulings, the SAVE Act | 13% | 0.06 |
+| Redistricting & gerrymandering | 20% | Aug 2025 (38%) | Texas mid-decade map and the Democrats' walkout; later the Virginia referendum (Apr 2026) | **37%** | 0.04 overall, **0.15 with the House** |
+| Epstein files & corruption | 11% | Nov 2025 (37%) | House vote to release the Epstein files; 2020-election pardons | 12% | 0.07 |
+| Foreign policy & Iran war | 8% | Mar 2026 (25%) | US strikes on Iran and the war-powers fight | 10% | 0.01 |
+| Economy & cost of living | 5% | Aug 2026 (8%) | Affordability, gas prices, recession worries; rises into the election | 16% | 0.01 daily, **−0.19 weekly** |
+| Health care | 5% | Oct 2025 (21%) | ACA subsidies as the central demand in the government shutdown | 16% | 0.10 (weekly 0.21) |
+| Immigration & ICE | 5% | Jan–Feb 2026 (26%) | ICE operations in Minneapolis, a fatal ICE shooting, and the DHS funding standoff | 14% | 0.04 |
+| Government shutdown & budget | 3% | Oct 2025 (22%) | The autumn 2025 shutdown; a second, DHS-only lapse in Mar 2026 | 12% | −0.06 |
+
+"Positive documents" is the share of documents the sentiment model scores as more positive than negative. None of the daily correlations is individually significant after the multiple-testing correction.
+
+**Democracy and rule of law** is the largest theme by a wide margin and the most consistent: it never falls below a fifth of weekly discussion (median 36%). It covers several connected fears: that the administration will interfere with the midterms (cancelling or "nationalising" them, restricting mail voting, DOJ demands for state voter files, the FBI search in Fulton County), the limits of executive power and whether Congress will check it, and impeachment. It peaked in July 2026 as federal efforts to change election administration met state resistance and court rulings on mail ballots. The tone is heavily negative (only 13% of documents positive), and the most-shared posts are warnings rather than arguments about policy. For a left-leaning audience this is the central reason to vote, but it is not what most voters say they will vote on (13% in the Kalshi exit-poll market).
+
+**Redistricting** is a process story covered mainly by the news (30% of headlines against 9% of social posts). It began with Texas Republicans redrawing the map mid-decade to gain about five House seats, and Texas Democrats leaving the state to block a quorum (August 2025, the theme's peak). It then spread state by state: California's Prop 50 counter-map (November 2025), Missouri, North Carolina, Florida, Utah, Indiana, Virginia's April 2026 referendum, and the Supreme Court's Voting Rights Act case (*Callais*). It is the least negative theme by far (37% positive), because Democratic audiences followed it as a fight they were winning: Prop 50 passed, Indiana Republicans refused to redraw, and Virginia voted yes. It is also the theme whose sentiment lines up most clearly with the market, and only for the right chamber: its link with the House-control contract (0.15) is the strongest single-issue result in the study, while the link with the Senate is essentially zero. That is what you would expect, since district lines only affect House seats.
+
+**Epstein files and corruption** is mainly a social-media story (15% of social posts against 6% of headlines). The core is the push to release the Epstein files, which peaked in November 2025 with the House vote on release. Around it sit related corruption themes: Elon Musk and DOGE, billionaire and crypto money in campaigns, a proposed ban on congressional stock trading, and presidential pardons. Sentiment on this theme improved in 2026 (from −0.51 to −0.44), consistent with the files story moving from cover-up to disclosure.
+
+**Foreign policy and the Iran war** spiked in March 2026, when the US launched strikes on Iran. Coverage framed the strikes as a political risk for Republicans ("tests MAGA unity", "risks fragmenting his base") and reopened the war-powers debate in Congress. Smaller strands cover Gaza, Ukraine and Russia, Venezuela, Caribbean boat strikes and Greenland. It is the most negative theme (10% positive). The war matters more for markets through oil than through sentiment: the largest late rise in the Democratic odds (mid-September 2026) came alongside headlines about a Middle East escalation and the risk of an oil shock.
+
+**The economy and cost of living** is where the gap between discussion and voter priority is largest. It holds only 5% of discussion but is the market's clear favourite as voters' top issue (92%). The text fragments into recession and unemployment worries, gas prices, groceries, "affordability" (often in response to the president calling it a hoax), and taxes and deficits. Unlike the other themes it has no single dominant event; instead it rises steadily, reaching 7.5% of discussion in the final two months and peaking in late August 2026 alongside coverage of markets and household budgets heading into the election. It is also the only theme whose sentiment behaves the way the "midterms punish the party in power" view predicts: at weekly frequency, worsening economic tone goes with rising Democratic odds (−0.19), though this falls short of significance.
+
+**Health care** is almost entirely about the Affordable Care Act. Its peak in October 2025 coincides with the government shutdown, when Democrats made extending the enhanced ACA subsidies their central demand; a smaller strand covers RFK Jr. and vaccine policy. It has the largest raw correlation with the sweep odds (0.10 daily, 0.21 weekly), but that result flips sign when Kalshi is used instead of Polymarket, so it should not be leaned on.
+
+**Immigration and ICE** was concentrated in January and February 2026, during an ICE enforcement surge in Minneapolis, the fatal shooting of a Minneapolis woman by an ICE agent, calls to impeach Homeland Security Secretary Kristi Noem, and a standoff over DHS funding. It is the one theme where sentiment changes come close to preceding market moves (Granger test p = 0.007, adjusted q = 0.075), which is suggestive but not conclusive.
+
+**The government shutdown** is the most episodic theme. It dominated October and November 2025, collapsed when centrist Democrats voted to reopen the government (a deal the market read as a Democratic setback: the sweep odds fell 4.5 points on 10 November), and returned briefly in March 2026 as a DHS-only funding lapse disrupted TSA screening. It has since all but disappeared from the discussion (0.5% in the last 60 days).
+
+**Taken together**, the themes split into two groups. Process and scandal themes (democracy, redistricting, Epstein) dominate the volume of discussion and the mood of engaged partisans, and they are the ones whose sentiment moves with the market, mostly through the House. Pocketbook themes (economy, health care costs, the shutdown's effects) are a much smaller share of the text, but they are what voters say they will decide on, and the economy is the only theme that shows the referendum pattern.
+
+---
+
 ## 4. Topic sentiment indices and the Democratic-sweep probability
 
 ### 4.1 Index construction
