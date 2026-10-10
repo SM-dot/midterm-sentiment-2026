@@ -1,39 +1,51 @@
-# What Voters Care About, What Markets Price: Topic Sentiment, Event Contracts and the 2026 Midterm Trade
+# What Voters Care About, and Whether Markets Notice: Sentiment, Prediction Markets and the 2026 Midterms
 
-**Study window:** 19 Jul 2025 – 8 Oct 2026 (447 days; Election Day is 3 Nov 2026) · **Corpus:** 257,966 documents (224,495 Bluesky posts and 33,471 news headlines from ≈3,500 outlets) · **Markets:** Polymarket and Kalshi "Democratic sweep" contracts · **Equities:** a 20-stock ex-ante mid-term basket
+*NLP in Finance, Modelling Market Project · data through 8 October 2026, four weeks before Election Day*
+
+## Summary
+
+This project asks three linked questions about the 2026 US midterms. What issues do voters care about? Does the public mood on those issues move with the market-implied probability that Democrats win both the House and the Senate? And do the stocks most exposed to that outcome trade on either?
+
+To answer them I collected 258,000 posts and headlines from fifteen months of election coverage (Bluesky and roughly 3,500 news outlets). I let a topic model find the issues rather than choosing them in advance, scored the sentiment of every document, and compared the resulting issue indices with daily prices on Polymarket and Kalshi and with a 20-stock basket of likely winners and losers from a Democratic sweep.
+
+The short answer: voters care most about the economy, but the political conversation is mostly about something else. Sentiment moves with the prediction markets on the same days but does not predict them. And the "midterm trade" in equities did not show up during the campaign.
+
+## Key findings
+
+**1. The economy is voters' top issue, yet it is a small part of the conversation.** Kalshi's market on the exit poll's most important issue gives the economy and cost of living a 92% chance. In the text, it accounts for only 5% of issue-related discussion (rising to 7.5% in the last two months). The conversation is dominated by democracy and rule of law (33%), redistricting (20%), the Epstein files and corruption (11%), and the Iran war (8%). The *ranking* of issues in the text agrees well with the market's (rank correlation 0.85). The *size* of the economy's lead does not. Counting how often something is discussed tells you what journalists and engaged partisans talk about, not what the median voter will vote on, so text-based issue measures need an outside anchor.
+
+**2. Sentiment moves with the prediction market but does not lead it.** Day-to-day changes in the composite sentiment index correlate with changes in the Democratic-sweep odds at about 0.10 (about 0.20 week to week). The link is strongest for the House, where redistricting matters, and close to zero for the Senate. But it is contemporaneous only: sentiment adds no forecasting power once you know today's price (out-of-sample R² of 0.4%). That is what you would expect if the market is efficient, and the Polymarket contract passes standard efficiency tests once it became liquid. None of the single-issue correlations survives a correction for testing many issues at once.
+
+**3. The tone measure reflects Democrats' mood, not voter anger.** I expected worse tone to mean better Democratic odds, since midterms usually punish the party in power. The data show the opposite: more positive tone goes with higher Democratic odds. The likely reason is the source. Bluesky's audience leans heavily left, so its mood brightens when Democrats win special elections or court cases, which are the same events that move the market. The one issue that behaves the way I expected is the economy at weekly frequency, but only suggestively.
+
+**4. Stocks exposed to the outcome did not trade on it.** The basket (clean energy and Medicaid insurers long; detention, crypto, firearms and fossil-fuel names short) did rise with Democratic odds in the first half of the sample, but the relationship disappeared out of sample. Only 13 of the 20 stocks moved in the predicted direction, there was no reaction to the ten largest jumps in the odds, and nothing remains after standard risk-factor controls. With fifteen months of data, the test could only have detected a large effect (about 19% cumulative), so moderate exposures cannot be ruled out. Economically, the null is plausible. A Democratic Congress facing a Republican president with a veto means gridlock rather than new law, which limits how much any one industry's cash flows should change.
+
+**What this means in practice.** Use the prediction-market price itself as the measure of political risk. Use NLP to explain *why* that price moved and to track which issues are rising. If the equity question matters, test it on election night, when the remaining uncertainty (the odds stood at 63.5% on 8 October) resolves all at once and the test has far more power than a year of small daily moves.
 
 ---
 
-## Executive summary
+## 1. Approach
 
-| Question | Answer | Key evidence |
-|---|---|---|
-| **What do voters care about?** | **The economy and cost of living** is the voters' priority. The discourse, however, is dominated by **democracy / rule of law** (33% of issue discourse), **redistricting** (20%), **Epstein files / corruption** (11%) and the **Iran war / foreign policy** (8%). The economy gets only 4.9% of the discourse, but that share is rising (7.5% in the last 60 days). | Kalshi's exit-poll market prices "economy & cost of living" at **92%** to be the #1 issue. Our salience ranking agrees with that market's ordering (Spearman **ρ = 0.85**), but understates the economy's *level* by an order of magnitude. Media and activist attention ≠ median-voter priority. |
-| **Does topic sentiment track P(Democratic sweep)?** | **Weakly, only at the same moment, and with the "wrong" sign.** Changes in the composite sentiment index correlate with changes in logit P(sweep) at **ρ = 0.10** (daily) and **0.20** (weekly). None of the 10 tests survives a false-discovery-rate correction. More positive tone goes with *higher* Democratic odds, which rejects the referendum ("discontent") hypothesis. | The cross-correlation peaks at lag 0. No Granger causality survives correction. Out-of-sample R² is **0.4%** (Clark–West p = 0.10). Polymarket passes weak-form efficiency tests in the second half of the sample. The sentiment link is concentrated in the **House** contract (ρ = 0.14; redistricting tone 0.15), not the Senate (0.03). |
-| **Do mid-term-exposed equities trade on it?** | **Not detectably in this cycle.** The thesis basket (Democratic-sweep beneficiaries minus losers) loaded on the sweep probability in-sample (t = 1.6) but reversed out-of-sample (t = −0.7). A data-driven basket shows textbook overfitting (in-sample t = 3.3 → out-of-sample t = −1.6). The sentiment index has no relationship with basket returns. | 13 of 20 thesis signs are correct (binomial p = 0.13). The event study on the 10 largest probability shocks gives p = 0.41. The political loading after Fama–French 5 + momentum controls has t = 0.83. **Power:** we can only rule out political exposures above about **19% cumulative abnormal return** over the window. |
+The work follows the three questions in order. First, documents are collected with neutral search terms ("midterms", "Congress", "voters") so that the issue list is discovered rather than assumed. A BERTopic model groups them into 260 fine-grained topics, which I then mapped to 17 voter issues and checked against an automatic method and against the Kalshi exit-poll market. Second, each document is scored with a RoBERTa sentiment model and averaged into a daily index per issue, which is compared with the Polymarket and Kalshi odds. Third, a basket of stocks chosen in advance on policy grounds is tested against those odds and against the sentiment indices.
 
-**Bottom line.** NLP is very good at measuring *what is being talked about* and *how the conversation feels*, and that tone moves on the same news days as the prediction market. But once you observe the event-contract price, sentiment adds essentially no forecasting information. The "midterm trade" in equities was not a priced factor during the campaign. The most defensible economic reason is that **a Democratic Congress facing a Republican president produces gridlock (veto power), not a large policy shift**. The practical implication: use event-contract prices as the political state variable, use NLP to *explain and attribute* their moves, and concentrate the equity test on the election-night resolution, when roughly 1.9 logit units of uncertainty resolve at once.
+A few choices matter more than the rest, because getting them wrong produces convincing but false results:
 
----
+* **Changes, not levels.** The odds trend upward over the period and the sentiment indices do not. Correlating the levels gives values as high as 0.65 that mean nothing, so every test uses day-to-day or week-to-week changes.
+* **Lining up the clocks.** Polymarket stamps each day's price at midnight UTC, which is really the previous day's close. An early version of the analysis missed this and appeared to show that sentiment predicts the market; correcting the timestamps made that result disappear (§4.4). For stocks, the odds are sampled at the 4pm New York close.
+* **No hindsight.** Stock betas are estimated on the year before the study period, the basket is fixed before looking at returns, and anything fitted to the data is tested on a later period it has not seen.
+* **Many tests, honest p-values.** Eight issues and two composite indices are tested against several contracts, so p-values are adjusted for multiple comparisons.
 
-## 1. Problem framing and design choices
+Before running the main tests I wrote down four hypotheses, so that the results could confirm or contradict them rather than be explained after the fact:
 
-The assignment chains three links: **(i)** voter issues → **(ii)** issue sentiment over time ↔ P(Democratic sweep) → **(iii)** sentiment ↔ a mid-term equity basket. Each link has an identification trap, and the design is built around avoiding them:
+* **H1 (referendum):** worse issue sentiment raises the Democratic-sweep odds.
+* **H2 (efficient markets):** sentiment moves with the odds on the same day but does not forecast them.
+* **H3 (political exposure):** the expected beneficiaries (losers) rise (fall) when the odds rise.
+* **H4 (sentiment and stocks):** sentiment explains basket returns beyond what the odds already explain.
 
-| Trap | Why it matters | What we did |
-|---|---|---|
-| *Imposing the answer.* If you search for "inflation" you will find inflation. | Topic prevalence would just reflect the keyword list. | Retrieval queries are **issue-agnostic** ("midterms", "Congress", "voters", …). Issues are **discovered** by an unsupervised topic model and then mapped to a taxonomy. |
-| *Attention ≠ concern.* | Volume of discourse measures what media and activists amplify, not what the median voter ranks first. | Salience is **validated externally** against Kalshi's exit-poll issue market. News and engagement-weighted social media are reported separately. |
-| *Spurious regression.* | logit P(sweep) has a unit root (ADF p = 0.95); the sentiment indices are stationary (ADF p ≤ 0.02). Level correlations as high as 0.65 are meaningless. | All inference is on **changes**, with HAC errors, block-bootstrap confidence intervals and Benjamini–Hochberg FDR control. Levels are shown only descriptively. |
-| *Asynchronous clocks.* | Polymarket's daily print is stamped 00:00 UTC, i.e. the *previous* day's close. Equities close at 16:00 ET. Sentiment days run in UTC. | Each market series is re-labelled to the day it closes. Hourly market data is sampled at **16:00 ET** for the equity tests. The sentiment regressor for equities is lagged so it sits inside the return interval. *(Catching the first of these turned a spurious "predictive" result into a correct contemporaneous one; see §4.4.)* |
-| *Look-ahead and data-snooping.* | The basket and its signals must be fixed before outcomes are observed. | Betas are estimated on a pre-period (Jul 2024 – Jul 2025). The basket is **ex-ante, thesis-driven**. The data-driven variant is formed in-sample and evaluated **out-of-sample** (split on 1 Mar 2026). |
+The results: H1 is contradicted in sign (finding 3), H2 is supported (finding 2), and H3 and H4 are not supported (finding 4).
 
-Four hypotheses were written down before looking at the correlation results:
 
-* **H1 (referendum).** Under a Republican trifecta, a worsening tone on issues raises P(Democratic sweep): corr(ΔI, ΔlogitP) < 0.
-* **H2 (efficiency).** Sentiment co-moves with event-contract prices but does **not** forecast them out-of-sample.
-* **H3 (political beta).** Thesis beneficiaries (losers) earn positive (negative) market-adjusted returns when P(sweep) rises.
-* **H4 (sentiment → equities).** The sentiment index explains basket returns over and above the prediction market.
+How the pieces fit together:
 
 ```mermaid
 flowchart LR
