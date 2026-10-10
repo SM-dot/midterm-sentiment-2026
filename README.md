@@ -54,6 +54,26 @@ pytest -q tests
 * Live APIs keep moving: re-collecting after 8 Oct 2026 will extend the market series (the analysis window is fixed in `config.py`).
 * For CPU-only machines, change `device="mps"` in `topics.py` / `sentiment.py` to `"cpu"` (or `"cuda"`).
 
+## Data provenance: everything is live API data, nothing is simulated
+
+Every input is pulled from a public API at run time; there is **no mock, synthetic or hand-entered data** anywhere
+in the pipeline. (The only use of randomness is retry jitter in `src/http.py` and the unit tests' own test series.)
+
+| Source | Endpoint |
+|---|---|
+| Bluesky | `https://api.bsky.app/xrpc/app.bsky.feed.searchPosts` |
+| News | `https://news.google.com/rss/search` (`after:` / `before:` windows) |
+| Polymarket | `https://gamma-api.polymarket.com/events`, `https://clob.polymarket.com/prices-history` |
+| Kalshi | `https://api.elections.kalshi.com/trade-api/v2/.../candlesticks` |
+| Equities | Yahoo Finance via `yfinance`; Fama–French factors from Kenneth French's data library |
+
+* `config.END` is **dynamic**: the last complete day in New York time, so every run extends the data to yesterday
+  (the collectors are incremental). Set `MIDTERM_END=2026-10-08` to replicate REPORT.md exactly.
+* **Live audit:** `python -m src.verify_provenance` re-fetches a fresh random sample from every API and compares it
+  with what was stored. The result is in [`results/provenance_audit.json`](results/provenance_audit.json). Latest run: 50/50 Bluesky posts
+  still online with identical text, 158/159 Google News headlines returned again live, Polymarket and yfinance
+  values identical (max difference 0), and Kalshi's live quote consistent with the stored series.
+
 ## Data ethics
 
 Only public posts and headlines are used. Author identifiers are SHA-256 hashed at ingestion, and raw text and derived embeddings are git-ignored rather than redistributed. Prediction-market and price data come from public endpoints.

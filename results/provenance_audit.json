@@ -1,0 +1,68 @@
+{
+  "audited_at_utc": "2026-10-10T00:33:19+00:00",
+  "bluesky": {
+    "sampled": 50,
+    "still_online": 50,
+    "text_identical": 50,
+    "note": "posts can be deleted by authors after collection; identical text proves they are real records"
+  },
+  "google_news": [
+    {
+      "query": "midterm elections",
+      "window": "2026-06-02",
+      "stored": 100,
+      "live_now": 100,
+      "overlap": 100
+    },
+    {
+      "query": "Congress Democrats Republicans",
+      "window": "2026-04-18",
+      "stored": 56,
+      "live_now": 56,
+      "overlap": 56
+    },
+    {
+      "query": "midterms",
+      "window": "2026-07-26",
+      "stored": 100,
+      "live_now": 100,
+      "overlap": 100
+    }
+  ],
+  "polymarket": {
+    "dates_checked": [
+      "2025-08-27",
+      "2025-08-12",
+      "2026-06-12",
+      "2025-08-09",
+      "2026-03-21",
+      "2025-10-23",
+      "2026-08-01",
+      "2025-11-08",
+      "2026-05-07",
+      "2026-05-18"
+    ],
+    "max_abs_diff": 0.0,
+    "live_latest": {
+      "2026-10-09": 0.615
+    }
+  },
+  "kalshi": {
+    "ticker": "KXBALANCEPOWERCOMBO-27FEB-DD",
+    "live_last_price": "0.6000",
+    "live_bid": "0.6000",
+    "live_ask": "0.6100",
+    "stored_last_date": "2026-10-08",
+    "stored_last_mid": 0.615
+  },
+  "yfinance": {
+    "tickers": [
+      "HOOD",
+      "CXW",
+      "COIN",
+      "OSCR"
+    ],
+    "max_rel_diff": 1.1102230246251565e-16,
+    "stored_last_date": "2026-10-08"
+  }
+}

@@ -12,7 +12,12 @@ for p in (RAW, PROC, FIG, RES):
 
 # Study window: first day the Polymarket balance-of-power book traded -> last full day before the run.
 START = dt.date(2025, 7, 19)
-END = dt.date(2026, 10, 8)
+# END is always the last COMPLETE day in New York time, so every run pulls the freshest data available.
+# Override for an exact replication of REPORT.md with:  MIDTERM_END=2026-10-08 python run_all.py
+import os
+from zoneinfo import ZoneInfo
+END = (dt.date.fromisoformat(os.environ["MIDTERM_END"]) if os.environ.get("MIDTERM_END")
+       else dt.datetime.now(ZoneInfo("America/New_York")).date() - dt.timedelta(days=1))
 ELECTION_DAY = dt.date(2026, 11, 3)
 # Equity beta-estimation window (strictly before the study window to avoid look-ahead in "market adjustment").
 BETA_START = dt.date(2024, 7, 1)

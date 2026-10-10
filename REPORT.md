@@ -64,7 +64,7 @@ flowchart LR
 | **yfinance** | Adjusted closes for 20 stocks, SPY and sector ETFs | Jul 2024 – Oct 2026 | — | — |
 | **Ken French library** | FF5 + momentum, daily | Data through 31 Aug 2026 | Factor robustness | Ends ~5 weeks before the window does |
 
-All author identifiers are SHA-256 hashed at ingestion. Raw text is not committed to the repository; `python run_all.py` rebuilds it.
+**Provenance.** Every observation comes from the live public APIs above; nothing is simulated or hand-entered. A live audit (`src/verify_provenance.py`, output in `results/provenance_audit.json`) re-fetches random samples at run time. In the latest run, 50/50 sampled Bluesky posts were retrieved again with byte-identical text, 158/159 sampled headlines were returned again by Google News, and Polymarket closes and yfinance prices matched the stored values exactly. The window end is dynamic (the last complete New-York day), so re-running extends every series to yesterday. All author identifiers are SHA-256 hashed at ingestion. Raw text is not committed to the repository; `python run_all.py` rebuilds it.
 
 ---
 
@@ -76,7 +76,7 @@ Following the evaluation agenda of Kherwa & Bansal (2019), which covers coherenc
 
 | Model | K | NPMI | C_v | Diversity | Seed stability (Jaccard of top-10 terms) |
 |---|---|---|---|---|---|
-| LDA | 10 / 20 / 30 | 0.018 / 0.010 / −0.005 | 0.43 / 0.42 / 0.42 | 0.65–0.68 | **0.23–0.28** |
+| LDA | 10 / 20 / 30 | 0.018 / 0.006 / −0.005 | 0.43 / 0.42 / 0.42 | 0.65–0.68 | **0.23–0.28** |
 | NMF | 10 / 20 / 30 | 0.099 / 0.076 / 0.048 | 0.59 / 0.54 / 0.51 | 0.78–0.91 | 0.71–0.82 |
 | **BERTopic** | 30 (of 260) | 0.053 | 0.57 | **0.99** | 0.67 (ARI of partitions **0.92**) |
 

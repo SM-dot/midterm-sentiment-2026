@@ -12,7 +12,7 @@ import argparse, importlib, time, sys
 from src.config import PROC
 
 STEPS = ["collect_markets", "collect_equities", "collect_social", "collect_news", "preprocess", "topics", "issues",
-         "sentiment", "index", "market_analysis", "equities", "robustness", "summary", "figures", "report_tables"]
+         "sentiment", "index", "market_analysis", "equities", "robustness", "summary", "figures", "report_tables", "verify_provenance"]
 COLLECT = {"collect_markets", "collect_equities", "collect_social", "collect_news"}
 
 
